@@ -1,6 +1,11 @@
 <h1><%= @book.title %></h1>
 <p><%= @book.description %></p>
 
-<%@library_books.each do |copy| %>
+<%@book_copies.each do |copy| %>
 <h3> <%= link_to copy.library.name, copy.library %></h3>
+<% end %>
+
+<%= form_for @checked_out_book do |f| %>
+<%=f.collection_select :copy_id,@book_copies,:id,:library_id %>
+<%= f.submit "Checkout" %>
 <% end %>

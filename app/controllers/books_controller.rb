@@ -5,11 +5,12 @@ class BooksController < ApplicationController
   end
 
   def show
-    @library_books=BookCopy.all.select do |copy|
+    @book_copies=BookCopy.all.select do |copy|
       copy.book_id == params[:id].to_i
     end
     # byebug
     @book = Book.find(params[:id])
+    @checked_out_book=CheckedOutBook.new()
   end
 
   def search

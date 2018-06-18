@@ -6,6 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Book.destroy_all
+Library.destroy_all
+BookCopy.destroy_all
 book1 = Book.create(title: "Wonder", description: "test description")
 book2 = Book.create(title: "Milk and Honey", description: "another test description")
 
