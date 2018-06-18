@@ -10,11 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_18_173632) do
+ActiveRecord::Schema.define(version: 2018_06_18_201724) do
+
+  create_table "book_copies", force: :cascade do |t|
+    t.integer "book_id"
+    t.integer "library_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_book_copies_on_book_id"
+    t.index ["library_id"], name: "index_book_copies_on_library_id"
+  end
 
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "checked_out_books", force: :cascade do |t|
+    t.integer "book_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -26,13 +42,12 @@ ActiveRecord::Schema.define(version: 2018_06_18_173632) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "library_books", force: :cascade do |t|
-    t.integer "book_id"
-    t.integer "library_id"
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "first_name"
+    t.string "last_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["book_id"], name: "index_library_books_on_book_id"
-    t.index ["library_id"], name: "index_library_books_on_library_id"
   end
 
 end

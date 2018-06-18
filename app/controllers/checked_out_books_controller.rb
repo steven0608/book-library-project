@@ -1,0 +1,2 @@
+class CheckedOutBooksController < ApplicationController
+end

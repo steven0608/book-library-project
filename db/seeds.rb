@@ -12,5 +12,5 @@ book2 = Book.create(title: "Milk and Honey", description: "another test descript
 library1 = Library.create(name: "New York Library", location: "New York, New York")
 library2 = Library.create(name: "Fairfield Public Library", location: "Fairfield, Connecticut")
 
-LibraryBook.create(book_id: book1.id, library_id: library1.id)
-LibraryBook.create(book_id: book1.id, library_id: library2.id)
+BookCopy.create(book_id: book1.id, library_id: library1.id)
+BookCopy.create(book_id: book1.id, library_id: library2.id)

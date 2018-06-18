@@ -1,2 +1,8 @@
 <h1><%=@library.name %></h1>
 <p> <%=@library.location %></p>
+
+<ol>
+  <% @library_books.each do |copy| %>
+    <li><%= link_to copy.book.title, copy.book %></li>
+  <% end %>
+</ol>

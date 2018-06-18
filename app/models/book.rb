@@ -1,4 +1,4 @@
 class Book < ApplicationRecord
-  has_many :library_books
-  has_many :libraries, through: :library_books
+  has_many :book_copies
+  has_many :libraries, through: :book_copies
 end
