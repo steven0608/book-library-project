@@ -3,8 +3,9 @@ class SessionsController < ApplicationController
   end
 
   def create
+    # byebug
     @user=User.find_by(username: params[:username])
-    if !!@user
+    if @user && @user.authenticate(params[:password])
       session[:username] = params[:username]
       redirect_to user_path(@user)
     else
@@ -16,5 +17,6 @@ class SessionsController < ApplicationController
     session.delete :username
     redirect_to root_path
   end
+
 
 end

@@ -1,10 +1,12 @@
+<p id="notice"><%= notice %></p>
+
 <strong>User Name: </strong>  <%= @user.username %> <br>
 <strong>First Name:</strong>  <%= @user.first_name %> <br>
-<strong>Last Name: </strong> <%= @user.last_name %>
+<strong>Last Name: </strong> <%= @user.last_name %> <br>
 
-<%= form_tag ({controller:"sessions",method:"post",action:"destroy"}) do %>
-<%=submit_tag "Logout" %>
-<% end %>
+<%= link_to "Check Out Book", books_path %>
+
+
 
 <% @checked_out_books.each do |checked_out_book| %>
 <p><%= checked_out_book.book_copy.book.title %> in <%= checked_out_book.book_copy.library.name %> </p>
