@@ -39,7 +39,12 @@ end
 search_term.each do |letter|
   book_hash_array=parse_books(make_request(letter))
   book_hash_array.uniq.each do |book_hash|
-    book = Book.create(title:book_hash["title"],description:book_hash["description"])
+    if !!book_hash["authors"] || !book_hash["authors"] == []
+      author_name = book_hash["authors"][0]
+    else
+      author_name = "no name"
+    end
+    book = Book.create(title:book_hash["title"],description:book_hash["description"], author: author_name)
     BookCopy.create(book_id: book.id, library_id: Library.all.sample.id)
   end
 end
