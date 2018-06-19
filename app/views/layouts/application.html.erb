@@ -13,9 +13,12 @@
       <ul class="header-menu">
         <% if logged_in? %>
         <li>
-          <%= logged_in_user.first_name %> is logged in!
+          <%= logged_in_user.first_name %> is logged in! <%=link_to "Go to profile",logged_in_user%>
           <%= button_to "Logout", logout_path,method: :post %>
         </li>
+        <% else %>
+        <li><%= link_to "Register",new_user_path %></li>
+        <li><%=link_to "Login", login_path%></li>
         <% end %>
       </ul>
     </header>
