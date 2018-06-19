@@ -5,12 +5,13 @@ end
 
 def create
   @user=User.create(user_params)
-  session[:user_id]=@user.id
+  session[:username]=@user.id
   redirect_to @user
 end
 
 def show
-@user=User.find(session[:user_id])
+  @user=User.find_by(username: session[:username])
+  @checked_out_books = @user.books_to_return 
 end
 
 

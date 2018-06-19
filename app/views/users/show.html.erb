@@ -1,3 +1,14 @@
 <strong>User Name: </strong>  <%= @user.username %> <br>
 <strong>First Name:</strong>  <%= @user.first_name %> <br>
 <strong>Last Name: </strong> <%= @user.last_name %>
+
+<%= form_tag ({controller:"sessions",method:"post",action:"destroy"}) do %>
+<%=submit_tag "Logout" %>
+<% end %>
+
+<% @checked_out_books.each do |checked_out_book| %>
+<p><%= checked_out_book.book_copy.book.title %> in <%= checked_out_book.book_copy.library.name %> </p>
+<%= form_for checked_out_book, method: :patch do |f| %>
+<%=f.submit "Return Book" %>
+<% end %>
+<% end %>

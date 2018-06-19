@@ -6,6 +6,7 @@
 <% end %>
 
 <%= form_for @checked_out_book do |f| %>
-<%=f.collection_select :copy_id,@book_copies,:id,:library_id %>
+<%=f.collection_select :book_copy_id,@book_copies,:id, :library_name%>
+
 <%= f.submit "Checkout" %>
 <% end %>
