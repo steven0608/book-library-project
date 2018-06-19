@@ -6,4 +6,11 @@ class BookCopy < ApplicationRecord
   def library_name
     self.library.name
   end
+
+  def is_checked_out?
+    self.checked_out_books.all? do |checked_out_book|
+      checked_out_book.returned == true
+    end
+  end
+
 end
