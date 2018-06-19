@@ -12,8 +12,38 @@ BookCopy.destroy_all
 book1 = Book.create(title: "Wonder", description: "test description")
 book2 = Book.create(title: "Milk and Honey", description: "another test description")
 
-library1 = Library.create(name: "New York Library", location: "New York, New York")
-library2 = Library.create(name: "Fairfield Public Library", location: "Fairfield, Connecticut")
+library1 = Library.create(name: "Manhattan Library", location: "Manhattan, New York")
+Library.create(name: "Brooklyn Library", location: "Brooklyn, New York")
+Library.create(name: "Queens Library", location: "Queens, New York")
+Library.create(name: "Bronx Library", location: "Bronx, New York")
+Library.create(name: "Staten Island Library", location: "Staten Island, New York")
+Library.create(name: "Long Island Library", location: "Long Island, New York")
+
+
+
+
 
 BookCopy.create(book_id: book1.id, library_id: library1.id)
-BookCopy.create(book_id: book1.id, library_id: library2.id)
+
+def make_request(search_term)
+  resp = RestClient.get "https://www.googleapis.com/books/v1/volumes?q=#{search_term}&maxResults=40"
+  JSON.parse(resp.body)
+end
+search_term = ("a".."z").to_a
+def parse_books(json)
+  json["items"].map do |item|
+    item["volumeInfo"]
+  end
+end
+
+search_term.each do |letter|
+  book_hash_array=parse_books(make_request(letter))
+  book_hash_array.uniq.each do |book_hash|
+    book = Book.create(title:book_hash["title"],description:book_hash["description"])
+    BookCopy.create(book_id: book.id, library_id: Library.all.sample.id)
+  end
+end
+
+
+
+# byebug

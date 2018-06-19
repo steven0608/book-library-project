@@ -16,7 +16,7 @@ class BooksController < ApplicationController
 
   def search
     @books = Book.all.select do |book|
-      book.title.include?(params[:title])
+      book.title.downcase.include?(params[:title].downcase)
     end
     render :index
   end
