@@ -14,7 +14,11 @@ def create
 end
 
 def show
-  @user=User.find_by(username: session[:username])
+  # byebug
+  @user=helpers.logged_in_user
+if params[:id].to_i!=@user.id
+  redirect_to @user
+end
   @checked_out_books = @user.books_to_return
 end
 
