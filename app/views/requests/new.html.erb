@@ -1,0 +1,6 @@
+<%= form_for @request do |f| %>
+<%= f.hidden_field :title, :value => @request.title %>
+<%= f.hidden_field :description, :value => @request.description %>
+<%=f.collection_select :library_id, @libraries,:id, :name,include_blank: "Please select"%>
+<%= f.submit "Make Request" %>
+<% end %>

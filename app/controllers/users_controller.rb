@@ -15,7 +15,10 @@ end
 
 def show
   # byebug
+
   @user=helpers.logged_in_user
+  # byebug
+  @requests=@user.requests
 if params[:id].to_i!=@user.id
   redirect_to @user
 end

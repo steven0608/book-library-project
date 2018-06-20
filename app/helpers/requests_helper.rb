@@ -1,4 +1,4 @@
-module StaticHelper
+module RequestsHelper
 
   def make_request(search_term)
     resp = RestClient.get "https://www.googleapis.com/books/v1/volumes?q=#{search_term}&maxResults=10"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_18_201724) do
+ActiveRecord::Schema.define(version: 2018_06_20_140537) do
 
   create_table "book_copies", force: :cascade do |t|
     t.integer "book_id"
@@ -40,6 +40,17 @@ ActiveRecord::Schema.define(version: 2018_06_18_201724) do
   create_table "libraries", force: :cascade do |t|
     t.string "name"
     t.string "location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.integer "library_id"
+    t.integer "user_id"
+    t.string "title"
+    t.text "description"
+    t.string "author"
+    t.boolean "completed?", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

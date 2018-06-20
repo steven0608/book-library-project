@@ -9,6 +9,11 @@
   <% @book_hash.each do |book| %>
   <li><strong><%= book["title"]%></strong>
   <p><%= book["description"] %></p></li>
+  <%= form_tag "/requests/new", method: "get" do %>
+ <%= hidden_field_tag 'book["title"]', book["title"]  %>
+<%= hidden_field_tag 'book["description"]', book["description"]  %>
+<%= submit_tag "Request book" %>
+<% end %>
   <% end %>
 </ul>
 <% end %>

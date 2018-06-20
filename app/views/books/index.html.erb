@@ -15,4 +15,5 @@
   <% @books.each do |book| %>
     <li><%= link_to book.title, book %></li>
   <% end %>
+  Didn't find your book? <%= link_to "Request a book","/request-form" %>
 <% end %>

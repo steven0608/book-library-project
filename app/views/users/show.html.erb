@@ -12,7 +12,11 @@
 <% @checked_out_books.each do |checked_out_book| %>
 <div>
 <%= form_for checked_out_book, method: :patch do |f| %>
-<%= checked_out_book.book_copy.book.title %> in <%= checked_out_book.book_copy.library.name %>
+<%= link_to checked_out_book.book_copy.book.title,checked_out_book.book_copy.book %> in <%= checked_out_book.book_copy.library.name %>
 <%=f.submit "Return Book" %>
 <% end %></div>
+<% end %>
+<p><strong>Books Requested:</strong></p>
+<% @requests.each do |request| %>
+<%= request.title %> - Library: <%= request.library.name %> -Completed: <%=request.completed?%>
 <% end %>
