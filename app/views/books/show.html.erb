@@ -1,10 +1,12 @@
-<h1><%= @book.title %></h1>
-<p><%= @book.author %></p>
-<p><%= @book.description %></p>
+<h1>Title: <%= @book.title %></h1>
+<p>Author: <%= @book.author %></p>
+<p>Description: <br><p><%= @book.description %></p></p>
 
+<h3>Copies Available At:
 <%@book_copies.each do |copy| %>
-<h3> <%= link_to copy.library.name, copy.library %></h3>
+<%= link_to copy.library.name, copy.library %>
 <% end %>
+</h3>
 
 <%= form_for @checked_out_book do |f| %>
 <%=f.collection_select :book_copy_id,@book_copies,:id, :library_name,include_blank: "Please select"%>

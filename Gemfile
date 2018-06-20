@@ -51,7 +51,7 @@ group :development do
 end
 
 gem 'bcrypt', '~> 3.1'
-
+gem 'will_paginate', '~> 3.1.0'
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15', '< 4.0'
@@ -59,6 +59,7 @@ group :test do
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
 end
+
 
 gem "json"
 gem "rest-client"

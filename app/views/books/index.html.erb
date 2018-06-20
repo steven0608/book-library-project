@@ -1,11 +1,18 @@
+
 <%= form_tag "/books/search", method: "get" do %>
-<%= label_tag(:title) %>
-<%= text_field_tag(:title) %>
+<strong><%= label_tag(:title, "Search by Title:")%></strong>
+<%= text_field_tag(:title, ) %>
 <%= submit_tag("Search") %>
 <% end %>
-
-<ol>
-<% @books.each do |book| %>
-  <li><%= link_to book.title, book %></li>
+<% if !@search %>
+  <ul>
+  <% @books.each do |book| %>
+    <li><%= link_to book.title, book %></li>
+  <% end %>
+</ul>
+<%= will_paginate @books %>
+<% else %>
+  <% @books.each do |book| %>
+    <li><%= link_to book.title, book %></li>
+  <% end %>
 <% end %>
-</ol>

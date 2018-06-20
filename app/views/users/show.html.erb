@@ -7,10 +7,12 @@
 <%= link_to "Check Out Book", books_path %>
 
 
+<p><strong>Books Checked Out:</strong></p>
 
 <% @checked_out_books.each do |checked_out_book| %>
-<p><%= checked_out_book.book_copy.book.title %> in <%= checked_out_book.book_copy.library.name %> </p>
+<div>
 <%= form_for checked_out_book, method: :patch do |f| %>
+<%= checked_out_book.book_copy.book.title %> in <%= checked_out_book.book_copy.library.name %>
 <%=f.submit "Return Book" %>
-<% end %>
+<% end %></div>
 <% end %>

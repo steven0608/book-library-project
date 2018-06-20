@@ -1,10 +1,12 @@
 class BooksController < ApplicationController
 
   def index
-    @books = Book.all
+    # @books = Book.all
+    @books = Book.paginate(:page => params[:page])
   end
 
   def show
+
     @book_copies=BookCopy.all.select do |copy|
       copy.book_id == params[:id].to_i
     end
@@ -15,9 +17,11 @@ class BooksController < ApplicationController
   end
 
   def search
+    @search = true 
     @books = Book.all.select do |book|
       book.title.downcase.include?(params[:title].downcase)
     end
+    @books=@books[0..9]
     render :index
   end
 end

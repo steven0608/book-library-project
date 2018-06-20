@@ -10,6 +10,9 @@
   </head>
   <body>
     <header>
+      <%=link_to "Books",books_path %>
+      <%=link_to "libraries",libraries_path %>
+
       <ul class="header-menu">
         <% if logged_in? %>
         <li>
