@@ -19,6 +19,7 @@ def show
   @user=helpers.logged_in_user
   # byebug
   @requests=@user.requests
+  @all_requests = Request.pending_requests 
 if params[:id].to_i!=@user.id
   redirect_to @user
 end

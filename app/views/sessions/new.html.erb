@@ -1,3 +1,9 @@
+<% if @errors.any? %>
+<div id="error_explanation">
+  <%= @errors.first %>
+  <% end %>
+</div>
+
 <%= form_tag ({controller: 'sessions', action: 'create', method:'post'}) do %>
   <%= label_tag "username"%>
   <%= text_field_tag "username"%>

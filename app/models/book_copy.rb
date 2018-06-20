@@ -13,4 +13,14 @@ class BookCopy < ApplicationRecord
     end
   end
 
+  def self.all_copies_for_book(book)
+    self.all.select do |copy|
+      copy.book == book
+    end
+  end
+
+  def checkout_count
+    self.checked_out_books.count
+  end
+
 end

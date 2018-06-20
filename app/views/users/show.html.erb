@@ -20,3 +20,20 @@
 <% @requests.each do |request| %>
 <%= request.title %> - Library: <%= request.library.name %> -Completed: <%=request.completed?%>
 <% end %>
+
+<ul>
+<% if logged_in_user.username == "admin" %>
+<p><strong>Pending Requests</strong></p>
+  <% @all_requests.each do |request| %>
+  <li><%= request.title %> -
+  <%= request.library.name %></li>
+    <%= form_tag '/approve-request', method: "post" do%>
+      <%= hidden_field_tag 'request["title"]', request.title %>
+      <%= hidden_field_tag 'request["description"]', request.description %>
+      <%= hidden_field_tag 'request["library_id"]', request.library_id %>
+      <%= hidden_field_tag 'request["id"]',request.id%>
+      <%= submit_tag "Approve Request" %>
+    <% end %>
+  <% end %>
+<% end %>
+</ul>

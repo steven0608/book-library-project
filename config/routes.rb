@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post '/request-form', to: 'requests#search'
   get "/requests/new", to: "requests#new"
   post "/requests", to: "requests#create"
+  post "/approve-request", to: "book_copies#create"
   resources :checked_out_books, only: [:create,:update]
   resources :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
