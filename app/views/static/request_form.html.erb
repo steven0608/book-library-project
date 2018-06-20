@@ -1,0 +1,14 @@
+<%= form_tag "/request-form", method: "post" do %>
+<strong><%= label_tag(:title, "Search by Title:")%></strong>
+<%= text_field_tag(:title, ) %>
+<%= submit_tag("Search") %>
+<% end %>
+
+<% if @book_hash %>
+<ul>
+  <% @book_hash.each do |book| %>
+  <li><strong><%= book["title"]%></strong>
+  <p><%= book["description"] %></p></li>
+  <% end %>
+</ul>
+<% end %>

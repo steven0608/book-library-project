@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   post '/logout', to: 'sessions#destroy'
+  get '/request-form', to: 'static#request_form'
+  post '/request-form', to: 'static#search'
   resources :checked_out_books, only: [:create,:update]
   resources :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
