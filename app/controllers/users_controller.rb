@@ -26,6 +26,7 @@ def show
   # byebug
   @requests=@user.requests
   @all_requests = Request.pending_requests
+  @welcome_message = "Hi, #{@user.first_name}! How are you today?"
 if params[:id].to_i!=@user.id
   redirect_to @user
 end

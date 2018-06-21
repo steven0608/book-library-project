@@ -2,6 +2,11 @@
   <div class="ui success message"><p id="notice"><%= notice %></p></div>
 <% end %>
 
+<% unless session[:display_welcome]%>
+<div class="ui success message"><%=flash.now[:notice]= @welcome_message %></div>
+<% session[:display_welcome] = true %>
+<% end %>
+
 <strong class="ui left-margin">User Name: </strong>  <%= @user.username %> <br>
 <strong class="ui left-margin">First Name:</strong>  <%= @user.first_name %> <br>
 <strong class="ui left-margin">Last Name: </strong> <%= @user.last_name %> <br>
