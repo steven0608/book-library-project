@@ -1,0 +1,6 @@
+<div class="ui right floated"> <%=Library.most_checkouts.name %> has the most checkouts, with: <%=Library.most_checkouts.checkout_count %> <br>
+<%=Library.most_book_copies.name %> has the most book copies, with: <%=Library.most_book_copies.book_copies_count %> <br> <br>
+<% Library.sort_by_requests.each do |library| %>
+<%= library.name %> has <%= library.requests_by_library %> requests <br>
+<% end %>
+</div>

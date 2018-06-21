@@ -67,3 +67,6 @@
   <% end %>
   <% end %>
 </table>
+<% if logged_in_user.username == "admin" %>
+<%= render "analytical_page" %>
+<% end %>

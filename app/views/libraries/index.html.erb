@@ -1,9 +1,10 @@
 <div class="ui link cards">
-
+  <% counter = 1 %>
   <% @libraries.each do |library| %>
   <div class="card">
     <a class="image" href="<%=library_path(library) %>">
-<img src="https://media.newyorker.com/photos/59097442c14b3c606c10858c/master/w_727,c_limit/Calhoun-Mid-Manhattan-Library1.jpg">
+<img src="/images/<%=counter %>.jpg">
+<% counter += 1 %>
 </a>
     <div class="content">
       <a class="header" href="<%=library_path(library) %>"><%=library.name%></a>
