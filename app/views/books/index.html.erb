@@ -5,16 +5,33 @@
 <%= submit_tag("Search") %>
 <% end %>
 <% if !@search %>
-  <ul>
+<table class="ui very basic collapsing celled table">
+  <thead>
+    <tr><th>Book</th>
+    <th>Author</th>
+  </tr></thead>
   <% @books.each do |book| %>
-    <li><%= link_to book.title, book %></li>
+    <tr><td><div class="content"><%= link_to book.title[0..75], book %></div></td>
+      <td><%=book.author %> </td>
+    </tr>
   <% end %>
-</ul>
+</table>
+
 <%= will_paginate @books %>
+
 <% else %>
+<table class="ui very basic collapsing celled table">
+  <thead>
+    <tr><th>Book</th>
+    <th>Author</th>
+  </tr></thead>
   <% @books.each do |book| %>
-    <li><%= link_to book.title, book %></li>
+  <tr><td><div class="content"><%= link_to book.title[0..75], book %></div></td>
+    <td><%=book.author %> </td>
+  </tr>
   <% end %>
+</table>
+
   <% if logged_in? %>
   Didn't find your book? <%= link_to "Request a book","/request-form" %>
   <% end %>

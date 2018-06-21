@@ -1,5 +1,16 @@
-<ul>
+<div class="ui link cards">
+
   <% @libraries.each do |library| %>
-<li><%= link_to library.name,library %></li>
+  <div class="card">
+    <a class="image" href="<%=library_path(library) %>">
+<img src="https://media.newyorker.com/photos/59097442c14b3c606c10858c/master/w_727,c_limit/Calhoun-Mid-Manhattan-Library1.jpg">
+</a>
+    <div class="content">
+      <a class="header" href="<%=library_path(library) %>"><%=library.name%></a>
+      <div class="description">
+        <%= library.location %>
+      </div>
+    </div>
+  </div>
   <% end %>
-</ul>
+</div>

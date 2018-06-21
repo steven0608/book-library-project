@@ -1,8 +1,15 @@
 <h1><%=@library.name %></h1>
 <p> <strong>Location:</strong> <%=@library.location %></p>
 
-<ol>
+
+<table class="ui very basic collapsing celled table">
+  <thead>
+    <tr><th>Book</th>
+    <th>Author</th>
+  </tr></thead>
   <% @library_books.each do |copy| %>
-    <li><%= link_to copy.book.title, copy.book %></li>
+    <tr><td><div class="content"><%= link_to copy.book.title[0..75], copy.book %></div></td>
+      <td><%=copy.book.author %> </td>
+    </tr>
   <% end %>
-</ol>
+</table>

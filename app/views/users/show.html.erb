@@ -4,36 +4,66 @@
 <strong>First Name:</strong>  <%= @user.first_name %> <br>
 <strong>Last Name: </strong> <%= @user.last_name %> <br>
 
-<%= link_to "Check Out Book", books_path %>
 
 
 <p><strong>Books Checked Out:</strong></p>
 
-<% @checked_out_books.each do |checked_out_book| %>
-<div>
-<%= form_for checked_out_book, method: :patch do |f| %>
-<%= link_to checked_out_book.book_copy.book.title,checked_out_book.book_copy.book %> in <%= checked_out_book.book_copy.library.name %>
-<%=f.submit "Return Book" %>
-<% end %></div>
-<% end %>
-<p><strong>Books Requested:</strong></p>
-<% @requests.each do |request| %>
-<%= request.title %> - Library: <%= request.library.name %> -Completed: <%=request.completed?%>
-<% end %>
+<table class="ui very basic collapsing celled table">
+  <thead>
+    <tr><th>Book</th>
+    <th>Library</th>
+    <th>Return</th>
+  </tr></thead>
+  <% @checked_out_books.each do |checked_out_book| %>
+  <tr><td><div class="content"><%=link_to checked_out_book.book_copy.book.title[0..75],checked_out_book.book_copy.book%></div></td>
+    <td><%= checked_out_book.book_copy.library.name %> </td>
+    <td><%= form_for checked_out_book, method: :patch do |f| %>
+    <%=f.submit "Return Book" %>
+    <% end %>
+  </td>
+  </tr>
+  <% end %>
+</table>
 
-<ul>
+
+
+
+<p><strong>Books Requested:</strong></p>
+<table class="ui very basic collapsing celled table">
+  <thead>
+    <tr><th>Book</th>
+    <th>Library</th>
+    <th>Completed?</th>
+  </tr></thead>
+  <% @requests.each do |request| %>
+  <tr><td><div class="content"><%= request.title %></div></td>
+    <td><%= request.library.name %> </td>
+    <td><%=request.completed?%> </td>
+  </tr>
+  <% end %>
+</table>
+
+
 <% if logged_in_user.username == "admin" %>
 <p><strong>Pending Requests</strong></p>
+<table class="ui very basic collapsing celled table">
+  <thead>
+    <tr><th>Book</th>
+    <th>Library</th>
+    <th> </th>
+  </tr></thead>
   <% @all_requests.each do |request| %>
-  <li><%= request.title %> -
-  <%= request.library.name %></li>
-    <%= form_tag '/approve-request', method: "post" do%>
+  <tr><td><div class="content"><%= request.title %></div></td>
+    <td><%= request.library.name %> </td>
+    <td><%= form_tag '/approve-request', method: "post" do%>
       <%= hidden_field_tag 'request["title"]', request.title %>
       <%= hidden_field_tag 'request["description"]', request.description %>
       <%= hidden_field_tag 'request["library_id"]', request.library_id %>
       <%= hidden_field_tag 'request["id"]',request.id%>
       <%= submit_tag "Approve Request" %>
-    <% end %>
+      <% end %>
+    </td>
+  </tr>
   <% end %>
-<% end %>
-</ul>
+  <% end %>
+</table>
