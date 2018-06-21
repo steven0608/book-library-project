@@ -39,6 +39,12 @@ class Library < ApplicationRecord
     end.last
   end
 
+  def self.most_patrons
+    Library.all.sort do |library1, library2|
+      library1.patron_count <=> library2.patron_count
+    end.last
+  end
+
   def self.sort_by_requests
     Library.all.sort do |library1, library2|
       library1.requests_by_library <=> library2.requests_by_library

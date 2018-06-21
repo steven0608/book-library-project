@@ -1,11 +1,28 @@
-<%= form_for @user do |t| %>
-<%= t.label :username %>
-<%= t.text_field :username %> <br>
-<%= t.label :first_name %>
-<%= t.text_field :first_name %> <br>
-<%= t.label :last_name %>
-<%= t.text_field :last_name %> <br>
-<%= t.label :password %>
-<%= t.password_field :password%>
-<%= t.submit "Sign Up" %>
+
+
+
+
+<%= form_for @user, :html => {:class => "ui form error centered-login"} do |t| %>
+<% if @errors %>
+  <% @errors.each do |error| %>
+    <div class="ui error message"><%= error %></div>
+  <% end %>
+<% end %>
+  <div class="field">
+    <%= t.label :username %>
+    <%= t.text_field :username %>
+  </div>
+  <div class="field">
+    <%= t.label :first_name %>
+    <%= t.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= t.label :last_name %>
+    <%= t.text_field :last_name %>
+  </div>
+  <div class="field">
+    <%= t.label :password %>
+    <%= t.password_field :password%>
+  </div>
+  <button class="ui button" type="submit">Sign Up</button>
 <% end %>

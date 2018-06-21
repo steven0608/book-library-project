@@ -1,15 +1,20 @@
 <% if @errors.any? %>
-<div id="error_explanation">
+<div class="ui error message">
   <%= @errors.first %>
   <% end %>
 </div>
 
-<%= form_tag ({controller: 'sessions', action: 'create', method:'post'}) do %>
-  <%= label_tag "username"%>
-  <%= text_field_tag "username"%>
-  <%= label_tag "password" %>
-  <%= password_field_tag "password" %>
-  <%= submit_tag "Login" %>
-<% end %>
 
-<a href="/users/new"><button type="Signup">Signup</button></a>
+
+
+<%= form_tag(login_path, {class: "ui form error centered-login"}) do %>
+  <div class="field">
+    <%= label_tag "username"%>
+    <%= text_field_tag "username"%>
+  </div>
+  <div class="Field">
+    <%= label_tag "password" %>
+    <%= password_field_tag "password" %>
+  </div>
+  <button class="ui button" type="submit">Login</button>
+<% end %>

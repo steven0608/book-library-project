@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
   def new
     @errors=[]
+    render :new
   end
 
   def create

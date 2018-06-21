@@ -1,6 +1,36 @@
-<div class="ui right floated"> <%=Library.most_checkouts.name %> has the most checkouts, with: <%=Library.most_checkouts.checkout_count %> <br>
-<%=Library.most_book_copies.name %> has the most book copies, with: <%=Library.most_book_copies.book_copies_count %> <br> <br>
-<% Library.sort_by_requests.each do |library| %>
-<%= library.name %> has <%= library.requests_by_library %> requests <br>
+<%# @sort_by_requests.each do |library| %>
+<!-- <%#= library.name %> has <%#= library.requests_by_library %> requests <br> -->
+<%# end %>
+<div class="ui left-margin celled list">
+  <div class="item">
+    <div class="content">
+      <div class="header">Most Checkouts</div>
+      <%=@most_checkouts.name %>, with: <%=@most_checkouts.checkout_count %>
+    </div>
+  </div>
+  <div class="item">
+    <div class="content">
+      <div class="header">Most Book Copies</div>
+      <%=@most_book_copies.name %>, with: <%=@most_book_copies.book_copies_count %>
+    </div>
+  </div>
+  <div class="item">
+    <div class="content">
+      <div class="header">Most Patrons</div>
+      <%=@most_patrons.name %> has the most patrons, with: <%=@most_patrons.patron_count %>
+    </div>
+  </div>
+</div>
+
+<div id="request-float">
+<strong class="ui left-margin">Requests</strong>
+<div id="table-borders" class="ui left-margin celled animated list">
+<% @sort_by_requests.each do |library| %>
+<div class="item">
+  <div class="content">
+    <%= library.name %> has <%= library.requests_by_library %> requests <br>
+  </div>
+</div>
 <% end %>
+</div>
 </div>

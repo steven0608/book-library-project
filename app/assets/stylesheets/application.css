@@ -14,12 +14,41 @@
  *= require_self
  */
 
+ #request-float {
+   position: fixed;
+   top: 100px;
+   right: 100px;
+ }
+
+ #table-borders {
+   border-left: 1px solid lightgrey;
+   border-right: 1px solid lightgrey;
+ }
+
   #centered-table {
     margin: 0 auto;
+  }
+
+  .signup-error {
+    color: red;
   }
   .ui.centered-table {
     margin: 0 auto;
   }
+
+  .centered-login {
+    width: 50%;
+    margin: 0 auto;
+  }
   .centered-link {
-    text-align: center
+    text-align: center;
+  }
+
+  .ui.left-margin {
+    margin-left: 1em;
+  }
+
+  footer {
+    text-align: right;
+    margin-right: 1em;
   }

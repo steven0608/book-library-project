@@ -1,14 +1,16 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+  <div class="ui success message"><p id="notice"><%= notice %></p></div>
+<% end %>
 
-<strong>User Name: </strong>  <%= @user.username %> <br>
-<strong>First Name:</strong>  <%= @user.first_name %> <br>
-<strong>Last Name: </strong> <%= @user.last_name %> <br>
+<strong class="ui left-margin">User Name: </strong>  <%= @user.username %> <br>
+<strong class="ui left-margin">First Name:</strong>  <%= @user.first_name %> <br>
+<strong class="ui left-margin">Last Name: </strong> <%= @user.last_name %> <br>
 
 
 
-<p><strong>Books Checked Out:</strong></p>
+<p class="ui left-margin"><strong>Books Checked Out:</strong></p>
 
-<table class="ui very basic collapsing celled table">
+<table class="ui very basic collapsing celled table left-margin">
   <thead>
     <tr><th>Book</th>
     <th>Library</th>
@@ -28,8 +30,8 @@
 
 
 
-<p><strong>Books Requested:</strong></p>
-<table class="ui very basic collapsing celled table">
+<p class="ui left-margin"><strong>Books Requested:</strong></p>
+<table class="ui very basic collapsing celled table left-margin">
   <thead>
     <tr><th>Book</th>
     <th>Library</th>
@@ -45,8 +47,8 @@
 
 
 <% if logged_in_user.username == "admin" %>
-<p><strong>Pending Requests</strong></p>
-<table class="ui very basic collapsing celled table">
+<div class="ui left-margin"><p><strong>Pending Requests</strong></p></div>
+<table class="ui very basic collapsing celled table left-margin">
   <thead>
     <tr><th>Book</th>
     <th>Library</th>
