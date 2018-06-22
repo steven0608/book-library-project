@@ -6,22 +6,16 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+if Library.all.count == 0
+  Library.create(name: "Manhattan Library", location: "Manhattan, New York")
+  Library.create(name: "Brooklyn Library", location: "Brooklyn, New York")
+  Library.create(name: "Queens Library", location: "Queens, New York")
+  Library.create(name: "Bronx Library", location: "Bronx, New York")
+  Library.create(name: "Staten Island Library", location: "Staten Island, New York")
+  Library.create(name: "Long Island Library", location: "Long Island, New York")
+  User.create(username: "admin", first_name: "Admin", last_name: "User", password: "password")
+end
 
-book1 = Book.create(title: "Wonder", description: "test description")
-book2 = Book.create(title: "Milk and Honey", description: "another test description")
-
-library1 = Library.create(name: "Manhattan Library", location: "Manhattan, New York")
-Library.create(name: "Brooklyn Library", location: "Brooklyn, New York")
-Library.create(name: "Queens Library", location: "Queens, New York")
-Library.create(name: "Bronx Library", location: "Bronx, New York")
-Library.create(name: "Staten Island Library", location: "Staten Island, New York")
-Library.create(name: "Long Island Library", location: "Long Island, New York")
-
-
-
-
-
-BookCopy.create(book_id: book1.id, library_id: library1.id)
 
 def make_request(search_term)
   resp = RestClient.get "https://www.googleapis.com/books/v1/volumes?q=#{search_term}&maxResults=40"
@@ -34,18 +28,15 @@ def parse_books(json)
   end
 end
 
-i = 0
 search_term.each do |letter|
   book_hash_array=parse_books(make_request(letter))
   book_hash_array.uniq.each do |book_hash|
-    puts i
-    i += 1
     if !!book_hash["authors"] || !book_hash["authors"] == []
       author_name = book_hash["authors"][0]
     else
       author_name = "no name"
     end
-    book = Book.find_by(title: book_hash["title"])
+    book = Book.create_with(description: book_hash["description"], author: author_name).find_or_create_by(title: book_hash["title"])
     BookCopy.create(book_id: book.id, library_id: Library.all.sample.id)
   end
 end

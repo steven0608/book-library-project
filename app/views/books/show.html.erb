@@ -3,8 +3,8 @@
 <p>Description: <br><p><%= @book.description %></p></p>
 
 <h3>Copies Available At:
-<%@book_copies.each do |copy| %>
-<%= link_to copy.library.name, copy.library %>
+<%@libraries.each do |library| %>
+<%= link_to library.name, library %>
 <% end %>
 </h3>
 

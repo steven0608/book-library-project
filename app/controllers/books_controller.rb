@@ -11,13 +11,16 @@ class BooksController < ApplicationController
       copy.book_id == params[:id].to_i
     end
     @book_copies = helpers.available_copies(@book_copies)
+    @libraries = @book_copies.map do |copy|
+      copy.library
+    end.uniq
     # byebug
     @book = Book.find(params[:id])
     @checked_out_book=CheckedOutBook.new()
   end
 
   def search
-    @search = true 
+    @search = true
     @books = Book.all.select do |book|
       book.title.downcase.include?(params[:title].downcase)
     end
