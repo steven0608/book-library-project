@@ -6,9 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Book.destroy_all
-Library.destroy_all
-BookCopy.destroy_all
+
 book1 = Book.create(title: "Wonder", description: "test description")
 book2 = Book.create(title: "Milk and Honey", description: "another test description")
 
@@ -36,15 +34,18 @@ def parse_books(json)
   end
 end
 
+i = 0
 search_term.each do |letter|
   book_hash_array=parse_books(make_request(letter))
   book_hash_array.uniq.each do |book_hash|
+    puts i
+    i += 1
     if !!book_hash["authors"] || !book_hash["authors"] == []
       author_name = book_hash["authors"][0]
     else
       author_name = "no name"
     end
-    book = Book.create(title:book_hash["title"],description:book_hash["description"], author: author_name)
+    book = Book.find_by(title: book_hash["title"])
     BookCopy.create(book_id: book.id, library_id: Library.all.sample.id)
   end
 end
